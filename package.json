@@ -15,5 +15,6 @@
     "gulp-size": "^1.2.1",
     "gulp-uglify": "^1.4.0",
     "merge-stream": "^0.1.7"
-  }
+  },
+  "version": "1.0.0"
 }
