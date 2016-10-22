@@ -1,0 +1,9 @@
+class_name: ApiTester
+modules:
+    enabled:
+        - \Helper\Api
+        - Asserts
+        - REST:
+            url: http://localhost:8000/demo/api
+            depends: PhpBrowser
+            part: Json

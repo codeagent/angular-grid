@@ -1,0 +1,11 @@
+<div class="btn-group btn-group-sm gv-operations-group">
+  <button class="btn btn-default"
+          type="button"
+          ng-repeat="operation in operations"
+          ng-if="operation.single && operation.condition(row)"
+          title="{{operation.label}}"
+          ng-disabled="pending"
+          ng-click="makeSingleOperation(operation, row)">
+    <i class="{{operation.icon}}"></i>
+  </button>
+</div>

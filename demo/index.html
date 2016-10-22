@@ -1,0 +1,413 @@
+<!doctype>
+<html>
+
+<head>
+  <title>Angular greedview</title>
+  <!-- <link rel="stylesheet" href="/../vendor/bower/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="/../vendor/bower/select2/select2.css" />
+  <link rel="stylesheet" href="/../vendor/bower/select2-bootstrap-css/select2-bootstrap.css" />
+  <link rel="stylesheet" href="/../vendor/bower/ui-select/dist/select.css" />
+  <link rel="stylesheet" href="/../vendor/bower/bootstrap-daterangepicker/daterangepicker.css" /> -->
+
+  <!-- CDN -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
+  <link rel="stylesheet" href="http://fk.github.io/select2-bootstrap-css/css/select2-bootstrap.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.13.2/select.min.css">
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
+  <link rel="stylesheet" href="/dist/css/angular-grid-view.css" />
+
+
+  <!-- <script src="/../vendor/bower/jquery/dist/jquery.min.js"></script>
+  <script src="/../vendor/bower/angular/angular.min.js"></script>
+  <script src="/../vendor/bower/angular-animate/angular-animate.min.js"></script>
+  <script src="/../vendor/bower/angular-sanitize/angular-sanitize.min.js"></script>
+  <script src="/../vendor/bower/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+  <script src="/../vendor/bower/ui-select/dist/select.min.js"></script>
+  <script src="/../vendor/bower/angular-bind-html-compile/angular-bind-html-compile.js"></script>
+  <script src="/../vendor/bower/moment/moment.js"></script>
+  <script src="/../vendor/bower/bootstrap-daterangepicker/daterangepicker.js"></script> -->
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+  <script src="https://code.angularjs.org/1.4.7/angular-animate.min.js"></script>
+  <script src="https://code.angularjs.org/1.4.7/angular-sanitize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.13.2/select.min.js"></script>
+  <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+
+  <script src="/dist/js/angular-grid-view.js"></script>
+  <script src="js/app.js"></script>
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/javascript.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <style>
+    .container {
+      margin-top: 10px;
+      width: 1300px !important;
+    }
+
+    pre {
+      border: 0;
+      background: transparent;
+      border-radius: 0;
+      margin: 0;
+      padding: 0;
+   }
+
+   code {
+      max-height: 900px;
+      overflow-y: auto;
+   }
+
+    .section {
+      margin-bottom: 30px;
+   }
+  </style>
+</head>
+
+<body ng-app="app">
+  <div class="container">
+     <div class="row section">
+        <div class="col-xs-4">
+           <h2>Usage</h2>
+<pre>
+<code class="html" >
+   &lt;grid-view name="name"&gt;&lt;/grid-view&gt;
+
+</code>
+</pre>
+        </div>
+        <div class="col-xs-8">
+           <h2>CDN</h2>
+<pre style='overflow-x: scroll;'>
+<code class="html" style="width:1000px;">
+   &#x3C;link rel=&#x22;stylesheet&#x22; href=&#x22;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css&#x22;&#x3E;
+   &#x3C;link rel=&#x22;stylesheet&#x22; href=&#x22;http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css&#x22;&#x3E;
+   &#x3C;link rel=&#x22;stylesheet&#x22; href=&#x22;http://fk.github.io/select2-bootstrap-css/css/select2-bootstrap.css&#x22;&#x3E;
+   &#x3C;link rel=&#x22;stylesheet&#x22; href=&#x22;https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.13.2/select.min.css&#x22;&#x3E;
+   &#x3C;link rel=&#x22;stylesheet&#x22; type=&#x22;text/css&#x22; href=&#x22;//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css&#x22; /&#x3E;
+
+   &#x3C;script src=&#x22;https://code.jquery.com/jquery-2.1.4.min.js&#x22;&#x3E;&#x3C;/script&#x3E;
+   &#x3C;script src=&#x22;https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js&#x22;&#x3E;&#x3C;/script&#x3E;
+   &#x3C;script src=&#x22;https://code.angularjs.org/1.4.7/angular-animate.min.js&#x22;&#x3E;&#x3C;/script&#x3E;
+   &#x3C;script src=&#x22;https://code.angularjs.org/1.4.7/angular-sanitize.min.js&#x22;&#x3E;&#x3C;/script&#x3E;
+   &#x3C;script src=&#x22;https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.min.js&#x22;&#x3E;&#x3C;/script&#x3E;
+   &#x3C;script src=&#x22;https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.13.2/select.min.js&#x22;&#x3E;&#x3C;/script&#x3E;
+   &#x3C;script type=&#x22;text/javascript&#x22; src=&#x22;//cdn.jsdelivr.net/momentjs/latest/moment.min.js&#x22;&#x3E;&#x3C;/script&#x3E;
+   &#x3C;script type=&#x22;text/javascript&#x22; src=&#x22;//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js&#x22;&#x3E;&#x3C;/script&#x3E;
+</code>
+           </pre>
+        </div>
+     </div>
+     <div class="row section">
+        <h2>Default mininail configuration</h2>
+        <hr/>
+<pre>
+  <code class="javascript hljs">
+     gridView
+        .grid('minimal',
+         {
+            service:
+            {
+               url: '/demo/api/'
+            },
+            columns:  [
+            	{ attribute: 'id'},
+            	{ attribute: 'avatar'},
+            	{ attribute: 'firstname'},
+            	{ attribute: 'lastname'},
+            	{ attribute: 'email'},
+            	{ attribute: 'status'},
+            	{ attribute: 'updated_at'},
+            	{ attribute: 'created_at'},
+            	{ attribute: 'updated_by'},
+            	{ attribute: "role" }
+            ]
+         })
+  </code>
+</pre>
+        <grid-view name="minimal"></grid-view>
+     </div>
+     <div class="row section">
+        <h2>Custom <span class="text-primary">Grid</span> configuration</h2>
+        <hr/>
+<pre>
+   <code class="javascript hljs">
+      gridView
+         .grid('custom',
+         {
+            service: 'default',
+            columns: ColumnsDefault,
+            sort: {created_at: 'desc', firstname: 'asc'},
+            filter: {email: '@gmail.com'},
+            pagination: {
+               pageSize: 5,
+               page: 4,
+               pageSizeVariants: [{name: 'Single', value: 1}, {name: 'Five', value: 5}, {name: 'Ten', value: 10}]
+            }
+         })
+   </code>
+</pre>
+        <grid-view name="custom"></grid-view>
+     </div>
+     <div class="row section">
+        <h2>Custom <span class="text-primary">Columns & Filters</span></h2>
+        <hr/>
+       <h3>Columns</h3>
+<pre>
+<code class="javascript hljs">
+[
+   {
+   	attribute: 'id',
+   	type: 'checkbox'
+   },
+   {
+   	attribute: 'id',
+   	label: 'ID',
+   	sortable: false,
+   	filter: false
+   },
+   {
+   	attribute: 'avatar',
+   	label: ['Icons', function(Icons)
+   	{
+         return &quot;&lt;i class = '&quot; + Icons.Avatar + &quot;'&gt;&lt;i&gt;Avatar&quot;
+   	}],
+   	templateUrl: 'templates/grid-view/cell/img.tpl.html',
+   	filter: false,
+   	sortable: false
+   },
+   {
+   	attribute: 'firstname',
+   	label: 'First Name'
+   },
+   {
+   	attribute: 'lastname',
+   	label: 'Last Name',
+   	template: function()
+   	{
+         return '&lt;span&gt;{{row[column.attribute]}}&lt;/span&gt;';
+   	}
+   },
+   {
+   	attribute: 'email',
+   	templateUrl: 'templates/grid-view/cell/email.tpl.html'
+   },
+   {
+   	attribute: 'status',
+   	filter: 'boolean',
+   	templateUrl: function()
+   	{
+         return 'templates/grid-view/cell/boolean.tpl.html';
+   	}
+   },
+   {
+   	attribute: 'updated_at',
+   	label: ['Icons', function(Icons)
+   	{
+         return &quot;&lt;i class = '&quot; + Icons.Calendar + &quot;'&gt;&lt;i&gt; Updated&quot;
+   	}],
+   	templateUrl: 'templates/grid-view/cell/date.tpl.html',
+   	filter: 'daterange'
+   },
+   {
+   	attribute: 'created_at',
+   	label: 'Created',
+   	templateUrl: 'templates/grid-view/cell/datetime.tpl.html',
+   	filter: 'daterange'
+   },
+   {
+   	attribute: 'updated_by',
+   	filter: 'user',
+   	label: 'Editor',
+   	template: '&lt;span ng-bind-html=&quot;row[column.attribute] | user&quot;&gt;&lt;/span&gt;'
+   },
+   {
+   	attribute: &quot;role&quot;,
+   	filter: 'role',
+   	template: function()
+   	{
+   		var ngClass = &quot;\
+   		'label-danger': row[column.attribute] == 'admin', \
+   			'label-primary': row[column.attribute] == 'moderator', \
+   			'label-default': row[column.attribute] == 'user'\ &quot;;
+   		return '&lt;div class=&quot;text-center&quot;&gt;\
+                        &lt;span class=&quot;label&quot; \
+                           ng-class=&quot;{' + ngClass + '}&quot;&gt; \
+                           {{row[column.attribute]}} \
+                        &lt;/span&gt;\
+                     &lt;/div&gt;';
+   	}
+   }
+]
+</code>
+</pre>
+         <h3>Custom filters</h3>
+<pre>
+<code class="javascript hljs">
+gridView
+   .filter('role', {
+      templateUrl: 'templates/grid-view/filter/dropdown.tpl.html',
+      controller: ['$scope', function($scope) {
+         $scope.options = [
+            {
+               'value': undefined,
+               'label': 'All roles'
+            },
+            {
+               'value': 'admin',
+               'label': 'Admin'
+            },
+            {
+               'value': 'moderator',
+               'label': 'Moderator'
+            },
+            {
+               'value': 'user',
+               'label': 'User'
+            },
+         ];
+      }]
+   })
+   .filter('user', {
+      templateUrl: 'templates/grid-view/filter/autocomplete.tpl.html',
+      controller: ['$scope', 'Users', function($scope, Users) {
+         $scope.options = [
+            {
+               'value': undefined,
+               'label': '-Any-'
+            }
+         ];
+         Users
+            .list()
+            .then(function(users){
+               angular.forEach(users, function(u, id){
+                  $scope.options.push({value: id, label: u.name})
+               });
+            })
+      }]
+   })
+</code>
+</pre>
+        <grid-view name="column"></grid-view>
+     </div>
+     <div class="row section">
+        <div class="col-xs-12">
+           <h2>Custom <span>Oprations</span></h2>
+           <hr/>
+           <h3>Config</h3>
+<pre>
+  <code class="javascript hljs">
+{
+  service: 'default',
+  columns: [
+      // ...
+     {
+        type: 'operations'
+     }
+  ],
+  operations: [
+     {
+        label: [function() {
+           return 'Demo'
+        }],
+        icon: 'fa fa-eye',
+        make: function(target)
+        {
+           var $scope = $rootScope.$new();
+           $scope.icon = this.icon;
+           $scope.title = 'Demo operation';
+           $scope.message = 'This is demo operation. Make it?';
+
+           return $uibModal
+              .open({
+                 scope: $scope,
+                 templateUrl: 'templates/grid-view/modal.tpl.html'
+              })
+              .result
+              .then(function() {
+                 alert('You just have made operation.')
+              });
+        },
+        condition: function(target)
+        {
+           return target.status == Status.APPROVED;
+        },
+        multiple: false,
+        single: true,
+        reloadOnDone: false
+     },
+     'approve',
+     'pending'
+  ]
+}
+  </code>
+</pre>
+         <h3>Prompts</h3>
+<pre>
+  <code class="javascript hljs">
+gridView
+  .prompt('approve', {
+     icon: 'glyphicon glyphicon-ok-circle',
+     label: 'Approve',
+     condition: function(target)
+     {
+        return target.status != Status.APPROVED;
+     },
+     make: function(target)
+     {
+        if(angular.isArray(target))
+           angular.forEach(target, function(t) {
+              t.status = Status.APPROVED;
+           })
+        else
+           target.status = Status.APPROVED;
+     },
+     prompt:
+     {
+        enabled: true,
+        title: "Approve",
+        message: "Approve selected item(s)?"
+     },
+     multiple: true,
+     single: true,
+     reloadOnDone: false
+  })
+  .prompt('pending', {
+     icon: 'glyphicon glyphicon-ban-circle',
+     label: 'Pending',
+     condition: function(target)
+     {
+        return target.status != Status.PENDING;
+     },
+     make: function(target)
+     {
+        if(angular.isArray(target))
+           angular.forEach(target, function(t) {
+              t.status = Status.PENDING;
+           })
+        else
+           target.status = Status.PENDING;
+     },
+     prompt:
+     {
+        enabled: false
+     },
+     multiple: true,
+     reloadOnDone: true
+  })
+  </code>
+</pre>
+         <grid-view name="operation"></grid-view>
+        </div>
+     </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+  <uib-pagination
+    ng-if="rows.length"
+    total-items="total"
+    items-per-page="pagination.pageSize.value"
+    ng-model="$parent.pagination.page"
+    max-size="4"
+    class="pagination-sm gv-pagination"
+    direction-links="false"
+    boundary-links="true"
+    first-text="&laquo;"
+    last-text="&raquo;"
+    ng-disabled="pending">
+  </uib-pagination>

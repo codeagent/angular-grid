@@ -1,0 +1,30 @@
+<table class="gv-table table table-condensed table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <td ng-repeat="column in columns">
+        <span class="gv-cell-check-all" ng-if="column.type == 'checkbox';">
+          <input type="checkbox" ng-model="selected.all" ng-change="toggleAll(column)" ng-disabled="pending" />
+        </span>
+        <span class="gv-cell-caption" ng-if="column.type == 'data' && !column.sortable">
+          <span ng-bind-html="column.label"></span>
+          <i class="pull-right glyphicon" ng-class="{'glyphicon-sort-by-attributes': sort[column.attribute] == 'asc', 'glyphicon-sort-by-attributes-alt': sort[column.attribute] == 'dec'}"></i>
+        </span>
+        <a href ng-disabled="pending" class="gv-cell-caption" ng-if="column.type == 'data' && column.sortable" ng-click="sortColumn(column)">
+          <span ng-bind-html="column.label"></span>
+          <i class="glyphicon" ng-class="{'glyphicon-sort-by-attributes': sort[column.attribute] == 'asc', 'glyphicon-sort-by-attributes-alt': sort[column.attribute] == 'desc'}"></i>
+        </a>
+        <span class="gv-cell-caption" ng-if="column.type == 'operations'" ng-bind-html="column.label"></span>
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="row in rows">
+      <td ng-repeat="column in columns" bind-html-compile="column.template"></td>
+    </tr>
+    <tr ng-if="!rows.length">
+      <td colspan="{{columns.length}}" class="text-center text-muted">
+         <i class="glyphicon glyphicon-info-sign"></i> No records found.
+      </td>
+   </tr>
+  </tbody>
+</table>

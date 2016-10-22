@@ -1,0 +1,175 @@
+<!doctype>
+<html>
+
+<head>
+    <title>Angular greedview</title>
+
+    <!-- CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.4.5/select2.css">
+    <link rel="stylesheet" href="http://fk.github.io/select2-bootstrap-css/css/select2-bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.13.2/select.min.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css"/>
+    <link rel="stylesheet" href="/dist/css/angular-grid-view.css"/>
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.4.7/angular-animate.min.js"></script>
+    <script src="https://code.angularjs.org/1.4.7/angular-sanitize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.13.2/select.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+
+    <script src="/dist/js/angular-grid-view.js"></script>
+    <script src="/dist/js/angular-grid-view-ru.min.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        angular
+            .module('app')
+            .constant('RuColumns', [
+                {
+                    attribute: 'id',
+                    type     : 'checkbox'
+                },
+                {
+                    attribute: 'id',
+                    label    : 'ID',
+                    sortable : false,
+                    filter   : false
+                },
+                {
+                    attribute  : 'avatar',
+                    label    : ['Icons', function (Icons) {
+                        return "<i class='" + Icons.Avatar + "'></i> Аватар"
+                    }],
+                    templateUrl: 'templates/grid-view/cell/img.tpl.html',
+                    filter     : false,
+                    sortable   : false
+                },
+                {
+                    attribute: 'firstname',
+                    label    : 'Имя'
+                },
+                {
+                    attribute: 'lastname',
+                    label    : 'Фамилия',
+                    template : function () {
+                        return '<span>{{row[column.attribute]}}</span>';
+                    }
+                },
+                {
+                    attribute  : 'email',
+                    templateUrl: 'templates/grid-view/cell/email.tpl.html'
+                },
+                {
+                    attribute  : 'status',
+                    label: 'Статус',
+                    filter   : 'boolean',
+                    templateUrl: function () {
+                        return 'templates/grid-view/cell/boolean.tpl.html';
+                    }
+                },
+                {
+                    attribute  : 'updated_at',
+                    label    : ['Icons', function (Icons) {
+                        return "<i class='" + Icons.Calendar + "'></i> Время обновления"
+                    }],
+                    templateUrl: 'templates/grid-view/cell/date.tpl.html',
+                    filter     : 'daterange'
+                },
+                {
+                    attribute  : 'created_at',
+                    label    : 'Создан',
+                    templateUrl: 'templates/grid-view/cell/datetime.tpl.html',
+                    filter     : 'daterange'
+                },
+                {
+                    attribute: 'updated_by',
+                    filter   : 'user',
+                    label    : 'Редактор',
+                    template : '<span ng-bind-html="row[column.attribute] | user"></span>'
+                },
+                {
+                    attribute: "role",
+                    filter   : 'role',
+                    label: 'Роль',
+                    template : function () {
+                        var ngClass = "\
+        'label-danger': row[column.attribute] == 'admin', \
+        'label-primary': row[column.attribute] == 'moderator', \
+        'label-default': row[column.attribute] == 'user' \
+     ";
+                        return '<div class="text-center">\
+                 <span class="label" \
+                    ng-class="{' + ngClass + '}"> \
+                    {{row[column.attribute]}} \
+                 </span>\
+              </div>';
+                    }
+                }
+            ])
+            .run(function (gridView, RuColumns) {
+                gridView
+                    .prompt('ru', {
+                        single: true,
+                        multiple: true,
+                        icon: 'glyphicon glyphicon-fire'
+                    })
+                    .grid('ru',
+                        {
+                            service   : 'default',
+                            columns: RuColumns.concat(
+                                {
+                                    type: 'operations'
+                                }),
+                            operations: [
+                                'ru'
+                            ]
+                        })
+                })
+    </script>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/javascript.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <style>
+        .container {
+            margin-top: 10px;
+            width: 1300px !important;
+        }
+
+        pre {
+            border: 0;
+            background: transparent;
+            border-radius: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+        code {
+            max-height: 900px;
+            overflow-y: auto;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body ng-app="app">
+<div class="container">
+    <div class="row section">
+        <div class="col-xs-12">
+            <h2>Русский перевод</h2>
+            <grid-view name="ru"></grid-view>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

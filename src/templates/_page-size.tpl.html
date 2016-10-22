@@ -1,0 +1,13 @@
+<div uib-dropdown class="gv-page-size-dropdown btn-group" >
+  <button uib-dropdown-toggle class="btn btn-default btn-sm btn-block" ng-disabled="pending">
+    <span ng-bind-html="pagination.pageSize.name"></span>
+    <span class="caret"></span>
+  </button>
+  <ul class="uib-dropdown-menu">
+    <li ng-repeat="variant in pagination.pageSizeVariants">
+      <a href ng-click="$parent.$parent.pagination.pageSize = variant">
+        <span ng-bind-html="variant.name"></span>
+      </a>
+    </li>
+  </ul>
+</div>

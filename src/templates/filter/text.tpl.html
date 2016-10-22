@@ -1,0 +1,8 @@
+<div class="gv-text-filter">
+  <input type="text"
+      ng-disabled="pending"
+        class="form-control input-sm"
+        ng-model="filter[column.attribute]"
+        ng-model-options="{debounce: 1000}"
+        placeholder="{{column.label}}"/>
+</div>

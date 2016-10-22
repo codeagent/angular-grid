@@ -1,0 +1,117 @@
+<!doctype>
+<html>
+
+<head>
+   <title>Angular greedview</title>
+   <link rel="stylesheet" href="/../vendor/bower/bootstrap/dist/css/bootstrap.css" />
+   <link rel="stylesheet" href="/../vendor/bower/bootstrap-daterangepicker/daterangepicker.css" />
+
+   <script src="/../vendor/bower/jquery/dist/jquery.min.js"></script>
+   <script src="/../vendor/bower/angular/angular.min.js"></script>
+   <script src="/../vendor/bower/angular-animate/angular-animate.min.js"></script>
+   <script src="/../vendor/bower/angular-sanitize/angular-sanitize.min.js"></script>
+   <script src="/../vendor/bower/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+   <script src="/../vendor/bower/ui-select/dist/select.min.js"></script>
+   <script src="/../vendor/bower/angular-bind-html-compile/angular-bind-html-compile.js"></script>
+   <script src="/../vendor/bower/moment/moment.js"></script>
+   <script src="/../vendor/bower/bootstrap-daterangepicker/daterangepicker.js"></script>
+   <script src="/dist/js/angular-grid-view.js"></script>
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/languages/javascript.min.js"></script>
+   <script>
+      hljs.initHighlightingOnLoad();
+   </script>
+
+
+   <script>
+      angular
+         .module('app', ['angular-grid-view'])
+         .run(function($rootScope) {
+            $rootScope.dateRange = {
+               locale: {
+                  format: 'lll'
+               }
+            };
+
+            $rootScope.$watch('dateRange', function(v) {
+               $rootScope.startDate = moment(v.startDate).format('DD.MM.YYYY');
+               $rootScope.endDate = moment(v.endDate).format('DD.MM.YYYY');
+            }, true);
+         });
+   </script>
+
+   <style>
+      .container {
+         margin-top: 10px;
+         /*width: 1200px;*/
+      }
+
+      pre {
+         border: 0;
+         background: transparent;
+         border-radius: 0;
+         margin: 0;
+         padding: 0;
+      }
+
+      code {
+         max-height: 300px;
+         overflow-y: auto;
+      }
+
+      .section {
+         margin-bottom: 30px;
+      }
+   </style>
+</head>
+
+<body ng-app="app">
+   <div class="container">
+      <div class="row section">
+         <h2>Date Range Picker</h2>
+         <hr/>
+         <div class="col-xs-6">
+<pre>
+  <code class="javascript hljs">
+     angular
+       .module('app', ['angular-grid-view'])
+       .run(function($rootScope) {
+          $rootScope.dateRange = {
+              locale: {
+                 format: 'lll'
+              },
+              startDate: moment().subtract(1, 'months'),
+              endDate: moment(),
+          };
+
+          $rootScope.$watch('dateRange', function(v) {
+              $rootScope.startDate = moment(v.startDate).format('DD.MM.YYYY');
+              $rootScope.endDate = moment(v.endDate).format('DD.MM.YYYY');
+          }, true);
+       });
+  </code>
+</pre>
+<pre>
+   <code class="javascript hljs">
+{{dateRange|json}}
+   </code>
+</pre>
+         </div>
+         <div class="col-xs-6">
+            <p>
+               <strong>dateRange: </strong>
+            </p>
+
+            <p><strong>Start date: </strong> {{startDate}}</p>
+            <p><strong>End date: </strong> {{endDate}}</p></pre>
+            <p>
+               <button type="button" class="btn btn-default btn-sm" grid-view-date-range="dateRange"></button>
+            </p>
+         </div>
+      </div>
+   </div>
+</body>
+
+</html>

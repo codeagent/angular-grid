@@ -1,0 +1,6 @@
+<ui-select ng-model="filter[column.attribute]" theme="select2" class="form-control input-sm" title="{{column.label}}" append-to-body="false" ng-disabled="pending" theme="bootstrap">
+   <ui-select-match placeholder="{{column.label}}">{{$select.selected.label}}</ui-select-match>
+   <ui-select-choices repeat="option.value as option in options | filter: $select.search">
+      <div ng-bind-html="option.label | highlight: $select.search"></div>
+   </ui-select-choices>
+</ui-select>

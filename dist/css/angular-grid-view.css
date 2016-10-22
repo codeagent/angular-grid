@@ -1,0 +1,34 @@
+.gv-container .row {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.gv-container .gv-table {
+  margin: 0;
+}
+.gv-container .gv-table .gv-cell-caption {
+  white-space: nowrap;
+  vertical-align: middle;
+  display: block;
+}
+.gv-container .gv-table .gv-operations-group {
+  white-space: nowrap;
+  display: block;
+  text-align: center;
+}
+.gv-container .gv-table .gv-operations-group .btn {
+  float: none;
+}
+.gv-container .gv-page-size-dropdown .uib-dropdown-menu {
+  right: 0;
+  left: auto;
+}
+.gv-container .gv-pagination {
+  margin: 0;
+}
+.gv-container .gv-nowrap {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.gv-container .gv-dropdown .select2-choice {
+  cursor: pointer;
+}

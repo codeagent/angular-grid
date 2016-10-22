@@ -1,0 +1,4 @@
+<div class="gv-summary" ng-show="total" ng-if="rows.length">
+  Показано <b><span ng-bind="pagination.pageSize.value * (pagination.page - 1) + 1"></span>-<span ng-bind="min(pagination.pageSize.value * pagination.page, total)"></span></b> из
+  <b ng-bind="total"></b>.
+</div>
