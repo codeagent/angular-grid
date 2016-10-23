@@ -12,4 +12,4 @@ npm install @codeagent/angular-grid
 Server response must correspond to a specific format.
 See the demo/api repository dir for the example.
 
-For more information how to install and use, see detailed demos here: [@todo:](http://)
+For more information how to install and use, see detailed demos [here](http://188.120.239.91/grid/demo/)
